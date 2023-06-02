@@ -98,7 +98,7 @@ const CardsContainer = ()=>{
                     hp={pokemon.hp}
                     attack={pokemon.attack}
                     defense={pokemon.defense}
-                    types={pokemon.types}
+                    types={pokemon.types ? pokemon.types.join(' / ') : pokemon.Types.map((t) => t.name).join(' / ')}
                 />
             })}
             </div>

@@ -26,10 +26,10 @@ const getPokemonsIdHandler = async (req,res)=>{
 }
 
 const createPokemonHandler = async (req,res)=>{
-    const { name, hp, attack, defense, speed, height, weight, image } = req.body;
-
+    const { name, hp, attack, defense, speed, height, weight, image, types } = req.body;
+    
     try{
-        const newPokemon = await createPokemon(name, hp, attack, defense, speed, height, weight, image);
+        const newPokemon = await createPokemon(name, hp, attack, defense, speed, height, weight, image, types);
         res.status(201).json(newPokemon);
     } catch (error) {
         res.status(400).json({error:error.message})

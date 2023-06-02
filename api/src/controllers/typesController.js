@@ -32,14 +32,10 @@ const storeAllTypes = async () => {
 
 const getTypesFromBDD = async (req,res) => {
     try {
-        let types = await Type.findAll({
+        const types = await Type.findAll({
             attributes: ['name'],
         });
-        if(!types.length) await storeAllTypes()
-        let newTypes = await Type.findAll({
-            attributes: ['name'],
-        });
-        const typeNames = newTypes.map(type => type.name);
+        const typeNames = types.map(type => type.name);
         return typeNames;
     } catch (error) {
         console.error("Error al obtener los tipos desde la base de datos:", error.message);

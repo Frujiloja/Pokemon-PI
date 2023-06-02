@@ -1,17 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPokemonDetail } from "../../redux/actions";
 import style from "./Detail.module.css"
+import { useParams } from "react-router-dom";
+//import useGetPokemonById from "../../hooks/useGetPokemonId";
 
 
-const Detail = (props) => {
+const Detail = () => {
+    // const pokemonData = useGetPokemonById();
+    // const pokemon = pokemonData[0];
+    const dispatch = useDispatch();
 
-     const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(getPokemonDetail(props.match.params.id))
-    // },[dispatch])
+    useEffect(() => {
+        dispatch(getPokemonDetail())
+    },[dispatch])
 
     const myPokemon = useSelector ((state) => state.pokemonDetail)
 
@@ -21,7 +24,7 @@ const Detail = (props) => {
                 myPokemon.length>0 ?
                 <div>
                     <h1>Soy {myPokemon[0].name}</h1>
-                    <img src={myPokemon[0].img? myPokemon[0].img : myPokemon[0].image}></img>
+                    <img src={myPokemon[0].image? myPokemon[0].image : "defaultImg2.png"}></img>
                     <h2>Type: {myPokemon[0].types}</h2>
                     <p>Hp: {myPokemon[0].hp}</p>
                     <p>Attack: {myPokemon[0].attack}</p>

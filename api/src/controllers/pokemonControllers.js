@@ -56,14 +56,20 @@ const cleanDbPoke = (poke) => {
 
 const createPokemon = async (name, hp, attack, defense, speed, height, weight, image, types) => {
     const newPokemon = await Pokemon.create({name, hp, attack, defense, speed, height, weight, image,  createdInDB: true})
-    for(const typeName of types) {
-        const typeInstance = await Type.findOne({ where: {name: typeName} });
-        if(typeInstance) {
+    // const typesDb = await Type.findAll({
+    //     where: {name: types}
+    // })
+    // console.log(typesDb)
+    // await newPokemon.setTypes(typesDb)
+    for (const typeName of types) {
+        const typeInstance = await Type.findOne({ where: { name: typeName } });
+        if (typeInstance) {
             await newPokemon.addTypes(typeInstance);
         }
     }
-    return newPokemon;
+    return newPokemon
 }
+
 
 const getPokemonById = async (id,source) => {
     
@@ -85,7 +91,15 @@ const getPokemonById = async (id,source) => {
 };
 
 const getAllPokemons = async () => {
-    const databasePokemons = await Pokemon.findAll()
+    const databasePokemons = await Pokemon.findAll({
+        include: {
+            model: Type,
+            attributes: ["name"],
+            through: {
+                attributes:[],
+            }
+        }
+    })
 
     const apiPokemons = 
         (await axios.get('http://pokeapi.co/api/v2/pokemon?limit=150')).data.results;
