@@ -1,0 +1,15 @@
+.mainContainer {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+    background-color: transparent;
+}
+
+.links {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 200%;
+    font-family:source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;;
+}

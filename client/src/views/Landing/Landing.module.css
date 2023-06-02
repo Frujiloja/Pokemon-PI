@@ -1,0 +1,26 @@
+.landing {
+    background-image: url("C:\Users\Fer\Desktop\Programacion\HENRY\PI\FINAL\PI-Pokemon-main\client\src\Images\pokemon_pokeball-wallpaper-2560x1440.jpg") ;
+    background-size:contain;
+    background-position: center;
+    height: 100vh;
+    position:relative;
+}
+
+ .enter {
+    /* margin-left:10%;
+    margin-top: 10%;
+    background-color: black;
+    border-radius: 50%;
+    height: 7%;
+    position:fixed; */
+    margin-top: 26%;
+    background-color: black;
+}
+
+
+.button{
+    color: white;
+    text-decoration: none;
+    font-weight:800;
+}
+

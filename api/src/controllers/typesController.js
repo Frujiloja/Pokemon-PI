@@ -13,21 +13,11 @@ const cleanArray = (arr) => {
 }
 //funcion para obtener los tipos de datos desde la API y guardarlos en la BDD
 const storeAllTypes = async () => {
-    // const apiTypes = 
-    //     (await axios.get('https://pokeapi.co/api/v2/type')).data.results;
-
-    // const apiTypesFinal = apiTypes.map(async el => (await axios.get(`${el.url}`)).data);  
-
-    // const typesDetailsRaw = await Promise.all(apiTypesFinal)
-
-    // const typesDetailsFinal = cleanArray(typesDetailsRaw)
-
-    // return typesDetailsFinal;
 
     try {
         const response = await axios.get('https://pokeapi.co/api/v2/type');
         const typesApi = response.data.results;
-
+        
         for(const type of typesApi) {
             await Type.findOrCreate({
                 where: {name: type.name},
@@ -35,17 +25,21 @@ const storeAllTypes = async () => {
         }
         console.log("tipos de pokemons almacenados correctamente");
     } catch (error) {
-        console.log("erroa al obtener y almacenar los tipos de pokemons:", error.message);
+        console.error("error al obtener y almacenar los tipos de pokemons:", error.message);
     }
 
 }
 
 const getTypesFromBDD = async (req,res) => {
     try {
-        const types = await Type.findAll({
+        let types = await Type.findAll({
             attributes: ['name'],
         });
-        const typeNames = types.map(type => type.name);
+        if(!types.length) await storeAllTypes()
+        let newTypes = await Type.findAll({
+            attributes: ['name'],
+        });
+        const typeNames = newTypes.map(type => type.name);
         return typeNames;
     } catch (error) {
         console.error("Error al obtener los tipos desde la base de datos:", error.message);

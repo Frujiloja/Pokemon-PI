@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+    gap: 1em;
+    padding-top: 30px;
+    align-items: center;
+}
+
+.pagination{
+    width: 2000px;
+    padding-bottom: 30px;
+}
+
+.pokemonList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: space-around;
+}
