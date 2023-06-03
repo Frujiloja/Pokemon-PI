@@ -5,9 +5,12 @@ import style from "./Landing.module.css"
 const Landing = () => {
     return(
         <div className={style.landing}>
-            <button className={style.enter}>
-                <Link to="/home" className={style.button}>ENTER</Link>
-            </button>
+            <div className={style.buttonDiv}>
+                <button className={style.bn62}>
+                    <Link to="/home" className={style.button}>ENTER</Link>
+                </button>
+            </div>
+            
         </div>
     )
 }

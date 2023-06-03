@@ -31,7 +31,7 @@ export default function Detail () {
             {pokemon ? (
                 <div>
                     <h1>{pokemon.name}</h1>
-                    <img src={pokemon.image? pokemon.image : "defaultImg2.png"}></img>
+                    <img src={pokemon.image? pokemon.image : "defaultImg2.png"} alt={pokemon.name}></img>
                     <h2>Type: {pokemon.types}</h2>
                     <p>Hp: {pokemon.hp}</p>
                     <p>Attack: {pokemon.attack}</p>

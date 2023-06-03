@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link, useHistory} from 'react-router-dom';
+import { useHistory} from 'react-router-dom';
 import { postPokemon, getTypes } from "../../redux/actions";
 import {useDispatch, useSelector} from "react-redux"
 import style from "./Form.module.css"
@@ -74,7 +74,7 @@ const Form = () => {
 
     useEffect(() => {
         dispatch(getTypes());
-    },[]);
+    });
 
     return (
         <div className={style.form}>

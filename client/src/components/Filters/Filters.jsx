@@ -59,8 +59,8 @@ const FilterAndOrder = ({ setPage }) => {
     ]
 
     return (
-        <div className={style.filters}>
-            <select onChange={handleTypeFilter}>
+        <div className={style.container}>
+            <select className={`${style.select} resetSelect`} onChange={handleTypeFilter}>
                 {types.map((e) => (
                     <option key={e} value={e}>
                         {e}

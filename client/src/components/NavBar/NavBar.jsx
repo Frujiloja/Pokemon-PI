@@ -4,11 +4,21 @@ import SearchBar from "../SearchBar/SearchBar"
 
 const NavBar = (props) => {
     return(
-        <div className={style.mainContainer}>
-            <Link to="/home" className={style.links}>HOME</Link>
-            <Link to="/create" className={style.links}>CREATE POKEMON</Link>
-            <SearchBar className={style.searchStyle} onSearch={props.onSearch} />
-        </div>
+        <nav className={style.mainContainer}>
+            <div>
+                <img src="pokemon.png" alt="pokemon logo" className={style.imgSmall} ></img>
+            </div>
+            <button>
+                <Link to="/home" className={style.link}>HOME</Link>
+            </button>
+            <button>
+                <Link to="/create" className={style.link}>CREATE POKEMON</Link>
+            </button>
+            <div className={style.searchDiv}>
+                <SearchBar className={style.searchStyle} onSearch={props.onSearch} />
+            </div>
+        </nav>
+        
     )
 }
 

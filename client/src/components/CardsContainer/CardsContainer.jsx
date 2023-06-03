@@ -3,7 +3,6 @@ import style from "./CardsContainer.module.css"
 import { useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import FilterAndOrder from "../Filters/Filters"
-import { Link } from "react-router-dom";
 
 const CardsContainer = ()=>{
     
@@ -64,7 +63,7 @@ const CardsContainer = ()=>{
         <div className={style.container}>
             <div className={style.pagination}>
                 {page > 1 && (
-                    <button onClick={handleFirstPage} disabled={page === 1}>
+                    <button  onClick={handleFirstPage} disabled={page === 1}>
                         &lt;&lt; 1
                     </button>
                 )}

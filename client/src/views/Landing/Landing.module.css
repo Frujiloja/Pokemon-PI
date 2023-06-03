@@ -6,21 +6,22 @@
     position:relative;
 }
 
- .enter {
-    /* margin-left:10%;
-    margin-top: 10%;
-    background-color: black;
-    border-radius: 50%;
-    height: 7%;
-    position:fixed; */
-    margin-top: 26%;
-    background-color: black;
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+    padding-top: 60vh;
 }
 
+.bn62 {
+  background-color: #1a1a1aae;
+  border-radius: 50px;
+  height: 3em;
+  width: 8em;
+  font-size: 25px;
+  font-weight: 600;
+}
 
-.button{
-    color: white;
+.button {
+    color: rgb(229, 188, 39);
     text-decoration: none;
-    font-weight:800;
 }
-

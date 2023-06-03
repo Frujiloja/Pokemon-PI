@@ -27,7 +27,7 @@ const Home = () => {
 
     return(
         <div className={style.home}>
-            <button onClick={e=>{handleClick(e)}}>Reload Pokemons</button>
+            {/* <button onClick={e=>{handleClick(e)}}>Reload Pokemons</button> */}
                 <div>
                     <CardsContainer/>
                 </div>
