@@ -28,7 +28,6 @@ const rootReducer=(state = initialState, action)=>{
                 ...state, infoType: action.payload
             }
         case FILTER_TYPE:
-            debugger;
             const filteredPokemons = action.payload === 'all' ?
             [...state.pokemons] :
             [...state.pokemons].filter(t => t.types?.some(e => e === action.payload))

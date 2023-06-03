@@ -1,41 +1,48 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getPokemonDetail } from "../../redux/actions";
+import { useParams } from "react-router-dom"
 import style from "./Detail.module.css"
-import { useParams } from "react-router-dom";
-//import useGetPokemonById from "../../hooks/useGetPokemonId";
 
 
-const Detail = () => {
-    // const pokemonData = useGetPokemonById();
-    // const pokemon = pokemonData[0];
-    const dispatch = useDispatch();
+
+export default function Detail () {
+    const { id } = useParams()
+    const [pokemon, setPokemon] = useState()
 
     useEffect(() => {
-        dispatch(getPokemonDetail())
-    },[dispatch])
+        fetch(`http://localhost:3001/pokemon/${id}`)
+           .then((response) => response.json())
+           .then((poke) => {
+              if (poke.name) {
+                 setPokemon(poke);
+              } else {
+                 window.alert('No hay pokemon con ese ID');
+              }
+           })
+           .catch((err) => {
+              window.alert('No hay pokemon con ese ID');
+           });
+        return setPokemon({});
+     }, [id]);
 
-    const myPokemon = useSelector ((state) => state.pokemonDetail)
 
-    return(
+     return (
         <div>
-            {
-                myPokemon.length>0 ?
+            {pokemon ? (
                 <div>
-                    <h1>Soy {myPokemon[0].name}</h1>
-                    <img src={myPokemon[0].image? myPokemon[0].image : "defaultImg2.png"}></img>
-                    <h2>Type: {myPokemon[0].types}</h2>
-                    <p>Hp: {myPokemon[0].hp}</p>
-                    <p>Attack: {myPokemon[0].attack}</p>
-                    <p>Defense: {myPokemon[0].defense}</p>
-                    <p>Speed: {myPokemon[0].speed}</p>
-                    <p>Height: {myPokemon[0].height}</p>
-                    <p>Weight: {myPokemon[0].weight}</p>
-                </div> : <p>Loading...</p>
-            }
+                    <h1>{pokemon.name}</h1>
+                    <img src={pokemon.image? pokemon.image : "defaultImg2.png"}></img>
+                    <h2>Type: {pokemon.types}</h2>
+                    <p>Hp: {pokemon.hp}</p>
+                    <p>Attack: {pokemon.attack}</p>
+                    <p>Defense: {pokemon.defense}</p>
+                    <p>Speed: {pokemon.speed}</p>
+                    <p>Height: {pokemon.height}</p>
+                    <p>Weight: {pokemon.weight}</p>
+                </div>
+        ) : (
+            ""
+        )}
         </div>
-    )
+     )
 }
-
-export default Detail;

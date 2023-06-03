@@ -19,7 +19,7 @@ function App() {
         <Home />
       </Route>
 
-      <Route exact path="/detail">
+      <Route exact path="/detail/:id">
         <Detail />
       </Route>
 

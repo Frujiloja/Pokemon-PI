@@ -46,18 +46,21 @@ export const filterByDb = () => {
 
 export const getPokemonDetail = (id)=>{
     return async function (dispatch){
-        try {
-            var json = await axios.get(`http://localhost:3001/pokemon/${id}`);
-            return dispatch({
-                type: GET_POKEMONDETAIL,
-                payload: json.data
-            })
-        } catch (error) {
-            console.log(error)
-        }
+        // try {
+        //     var json = await axios.get(`http://localhost:3001/pokemon/${id}`);
+        //     return dispatch({
+        //         type: GET_POKEMONDETAIL,
+        //         payload: json.data
+        //     })
+        // } catch (error) {
+        //     console.log(error)
+        // }
+        //////////////
         // const apiData = await fetch(`http://localhost:3001/pokemon/${id}`);
         // const pokemon = await apiData.json();
-        // dispatch({type:GET_POKEMONDETAIL, payload: pokemon })
+        const apiData = await axios.get(`http://localhost:3001/pokemon/${id}`);
+        const pokemon = await apiData.data;
+        dispatch({type:GET_POKEMONDETAIL, payload: pokemon })
     }
 }
 
