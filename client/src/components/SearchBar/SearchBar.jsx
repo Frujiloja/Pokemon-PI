@@ -17,19 +17,6 @@ export default function SearchBar() {
       dispatch(searchPokemon(searchTerm))
    };
 
-//    const[pokemons, setPokemons]= useState([]);
-
-//    function onSearch(id) {
-//     fetch(`http://localhost:3001/pokemon/${id}`)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if(data.name) {
-//         setPokemons((oldChars) => [...oldChars, data]);
-//       } else {
-//         window.alert('No hay personajes con ese ID');
-//       }
-//     });
-//   }
 
    return (
       <div>

@@ -5,12 +5,13 @@ const initialState = {
     pokemonDetail: [],
     pokemonFilter: [],
     infoType: [],
+    filteredPokemons:[]
 };
 
 const rootReducer=(state = initialState, action)=>{
     switch (action.type) {
         case GET_POKEMONS:
-            return {...state, pokemons:action.payload };
+            return {...state, pokemons:action.payload, filteredPokemons:action.payload };
         case GET_POKEMONDETAIL:
             return {...state, pokemonDetail:action.payload};
         case "POST_CHARACTER":
@@ -21,7 +22,7 @@ const rootReducer=(state = initialState, action)=>{
             let pokemonFounded = action.payload.length > 0 ? action.payload: [...state.pokemonFilter]
             return {
                 ...state,
-                pokemons: pokemonFounded
+                filteredPokemons: pokemonFounded
             }
         case GET_TYPES:
             return {
@@ -33,19 +34,19 @@ const rootReducer=(state = initialState, action)=>{
             [...state.pokemons].filter(t => t.types?.some(e => e === action.payload))
             return {
                 ...state,
-                pokemons: filteredPokemons
+                filteredPokemons
     
             };
         case FILTER_BY_DB:
             return {
                 ...state,
-                pokemons: action.payload,
+                filteredPokemons: action.payload,
             };
 
         case FILTER_BY_API:
             return {
                 ...state,
-                pokemons: action.payload,
+                filteredPokemons: action.payload,
             };
         case ORDER_BY_ATTACK:
             const orderAttack =
@@ -58,7 +59,7 @@ const rootReducer=(state = initialState, action)=>{
                     });
             return {
                 ...state,
-                pokemons: orderAttack,
+                filteredPokemons: orderAttack,
             };
     
         case ORDER_BY_NAME:
@@ -80,7 +81,7 @@ const rootReducer=(state = initialState, action)=>{
                     });
             return {
                 ...state,
-                pokemons: orderName,
+                filteredPokemons: orderName,
                 }
         case DELETE_POKEMON:
             return {

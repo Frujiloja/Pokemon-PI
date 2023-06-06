@@ -6,7 +6,7 @@ import FilterAndOrder from "../Filters/Filters"
 
 const CardsContainer = ()=>{
     
-    const pokemons = useSelector(state=>state.pokemons)
+    const pokemons = useSelector(state=>state.filteredPokemons)
 
     const [page, setPage] = useState(getSavedPage() || 1);
 
@@ -90,7 +90,8 @@ const CardsContainer = ()=>{
             
             <FilterAndOrder setPage={setPage}/>
             <div className={style.pokemonList}>
-            {displayedPokemons.map(pokemon => {
+            {displayedPokemons.length > 0 && displayedPokemons.map(pokemon => {
+                console.log(pokemon)
                 return <Card
                     key={pokemon.id}
                     id={pokemon.id}
@@ -102,6 +103,7 @@ const CardsContainer = ()=>{
                     types={pokemon.types ? pokemon.types.join(' / ') : pokemon.Types.map((t) => t.name).join(' / ')}
                 />
             })}
+            {!(displayedPokemons.length > 0) && <p>No Pokemons Found</p>}
             </div>
         </div>
     )

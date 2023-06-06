@@ -1,5 +1,7 @@
-const {Pokemon , Type} = require("../db");
+const {Pokemon , Type } = require("../db");
+const pokemonType = require("../models/Type")
 const axios = require("axios");
+const { Op } = require("sequelize")
 
 
 const cleanArray = (arr) => {
@@ -56,18 +58,22 @@ const cleanDbPoke = (poke) => {
 
 const createPokemon = async (name, hp, attack, defense, speed, height, weight, image, types) => {
     const newPokemon = await Pokemon.create({name, hp, attack, defense, speed, height, weight, image,  createdInDB: true})
-    // const typesDb = await Type.findAll({
-    //     where: {name: types}
-    // })
-    // console.log(typesDb)
-    // await newPokemon.setTypes(typesDb)
     for (const typeName of types) {
         const typeInstance = await Type.findOne({ where: { name: typeName } });
         if (typeInstance) {
             await newPokemon.addTypes(typeInstance);
         }
     }
-    return newPokemon
+    const pokemon = await Pokemon.findOne({
+        include: {
+            model: Type,
+            attributes: ["name"],
+            through: {
+                attributes:[],
+            }
+        }
+    })
+    return pokemon
 }
 
 
@@ -115,20 +121,32 @@ const getAllPokemons = async () => {
 }
 
 const searchPokemonByName = async (name) => {
-    const databasePokemons = await Pokemon.findAll({where:{ name: name }});
+
+    const databasePokemons = await Pokemon.findAll({
+        where:{ name: {[Op.iLike]: `%${name}`} }, 
+        include: {
+            model: Type,
+            attributes: ["name"],
+            through: {
+             attributes:[],
+            }
+        }}); //Op.iLike = buscar indiferente de mayusculas o minusculas
+
+    console.log(databasePokemons)
 
     const apiPokemons = 
         (await axios.get('http://pokeapi.co/api/v2/pokemon?limit=150')).data.results;
 
-    const apiPokemonsFinal = apiPokemons.map(async el => (await axios.get(`${el.url}`)).data);  
-
+    const apiPokemonsFinal = apiPokemons.map(async el => (await axios.get(`${el.url}`)).data);
+      
     const pokemonDetailsRaw = await Promise.all(apiPokemonsFinal)
 
     const pokemonDetails = cleanArray(pokemonDetailsRaw)
 
     const filteredApi = pokemonDetails.filter((pokemon) => {
-        return pokemon.name === name;
+        return pokemon.name === name.toLowerCase();
     })
+    
 
     return [...filteredApi, ...databasePokemons]
 }

@@ -4,6 +4,8 @@ const getPokemonsHandler = async (req,res)=>{
     const { name } = req.query;
 
     const response = name ? await searchPokemonByName(name) : await getAllPokemons()
+
+    
     
     try {
         res.status(200).json(response)
