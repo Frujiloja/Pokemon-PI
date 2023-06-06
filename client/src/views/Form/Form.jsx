@@ -74,56 +74,62 @@ const Form = () => {
 
     useEffect(() => {
         dispatch(getTypes());
-    });
+    },[]);
 
     return (
-        <div className={style.form}>
-            <h1 className={style.text}>Create Your Pokemon!</h1>
-            <form className={style.input} onSubmit={(e)=>handleSubmit(e)}>
-                <div  className={style.input}>
+        <div className={style.pageContainer}>
+            <div className={style.createContainer} >
+            <form className={style.form} onSubmit={(e)=>handleSubmit(e)}>
+                <div  className={style.formContainer}>
                     <label className={style.text}>Name: </label>
-                    <input className={style.inputDesign} type="text" value={form.name} name="name" onChange={(e)=>handleChange(e)} ></input>
+                    <input className={style.inputField} type="text" value={form.name} name="name" onChange={(e)=>handleChange(e)} ></input>
                     {errors.name && (
                         <p className="error">{errors.name}</p>
                     )}
                 </div>
-                <div className={style.input}>
+                <div className={style.formContainer}>
                     <label className={style.text}>Image: </label>
                     <input type="file" value={form.image} name="image" onChange={(e)=>handleChange(e)} ></input>
                 </div>
-                <div className={style.input}>
+                <div className={style.formContainer}>
                     <label className={style.text}>Hp: </label>
-                    <input className={style.inputDesign} type="text" value={form.hp} name="hp" onChange={(e)=>handleChange(e)} ></input>
+                    <input className={style.inputField} type="text" value={form.hp} name="hp" onChange={(e)=>handleChange(e)} ></input>
                 </div>
-                <div className={style.input}>
+                <div className={style.formContainer}>
                     <label className={style.text}>Attack: </label>
-                    <input className={style.inputDesign} type="text" value={form.attack} name="attack" onChange={(e)=>handleChange(e)} ></input>
+                    <input className={style.inputField} type="text" value={form.attack} name="attack" onChange={(e)=>handleChange(e)} ></input>
                 </div>
-                <div className={style.input}>
+                <div className={style.formContainer}>
                     <label className={style.text}>Defense: </label>
-                    <input className={style.inputDesign} type="text" value={form.defense} name="defense" onChange={(e)=>handleChange(e)} ></input>
+                    <input className={style.inputField} type="text" value={form.defense} name="defense" onChange={(e)=>handleChange(e)} ></input>
                 </div>
-                <div className={style.input}>
+                <div className={style.formContainer}>
                     <label className={style.text}>Speed: </label>
-                    <input className={style.inputDesign} type="text" value={form.speed} name="speed" onChange={(e)=>handleChange(e)} ></input>
+                    <input className={style.inputField} type="text" value={form.speed} name="speed" onChange={(e)=>handleChange(e)} ></input>
                 </div>
-                <div className={style.input}>
+                <div className={style.formContainer}>
                     <label className={style.text}>Height: </label>
-                    <input className={style.inputDesign} type="text" value={form.height} name="height" onChange={(e)=>handleChange(e)} ></input>
+                    <input className={style.inputField} type="text" value={form.height} name="height" onChange={(e)=>handleChange(e)} ></input>
                 </div>
-                <div className={style.input}>
+                <div className={style.formContainer}>
                     <label className={style.text}>Weight: </label>
-                    <input className={style.inputDesign} type="text" value={form.weight} name="weight" onChange={(e)=>handleChange(e)} ></input>
+                    <input className={style.inputField} type="text" value={form.weight} name="weight" onChange={(e)=>handleChange(e)} ></input>
                 </div>
-                <select onChange={(e)=>handleSelect(e)}>
-                    {types.map((t) => (
-                        <option value={t}>{t}</option>
-                    ))}
+                <div>
+                    <label>Type: </label>
+                    <select className={style.select} onChange={(e)=>handleSelect(e)}>
+                        {types.map((t) => (
+                            <option value={t}>{t}</option>
+                        ))}
                 </select>
+                </div>
+                
                 <ul><li>{form.types.map(el => el + " ,")}</li></ul> 
 
-                <button type="submit" >Create Pokemon</button>
+                <button type="submit" className={style.submitButton} >Create Pokemon</button>
             </form>
+            </div>
+            
         </div>
     )
 

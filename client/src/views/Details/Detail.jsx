@@ -29,16 +29,16 @@ export default function Detail () {
      return (
         <div>
             {pokemon ? (
-                <div>
-                    <h1>{pokemon.name}</h1>
+                <div className={style.detail}>
+                    <h1 className={style.text}>{pokemon.name}</h1>
                     <img src={pokemon.image? pokemon.image : "defaultImg2.png"} alt={pokemon.name}></img>
-                    <h2>Type: {pokemon.types}</h2>
-                    <p>Hp: {pokemon.hp}</p>
-                    <p>Attack: {pokemon.attack}</p>
-                    <p>Defense: {pokemon.defense}</p>
-                    <p>Speed: {pokemon.speed}</p>
-                    <p>Height: {pokemon.height}</p>
-                    <p>Weight: {pokemon.weight}</p>
+                    <h2 className={style.text}>Type: {pokemon.types}</h2>
+                    <p className={style.text}>Hp: {pokemon.hp}</p>
+                    <p className={style.text}>Attack: {pokemon.attack}</p>
+                    <p className={style.text}>Defense: {pokemon.defense}</p>
+                    <p className={style.text}>Speed: {pokemon.speed}</p>
+                    <p className={style.text}>Height: {pokemon.height}</p>
+                    <p className={style.text}>Weight: {pokemon.weight}</p>
                 </div>
         ) : (
             ""

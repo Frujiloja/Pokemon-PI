@@ -1,0 +1,14 @@
+.detail {
+    background-image: url('C:\Users\Fer\Desktop\Programacion\HENRY\PI\FINAL\PI-Pokemon-main\client\src\Images\red_cubes-wallpaper-1920x1080.jpg');
+    background-size: 100%;
+    background-size: cover;
+    height: 100%;
+    min-height: 100vh;
+    background-position: center;
+    padding-top: 1px;
+}
+
+.text{
+    color: white;
+    font-size: x-large;
+}
