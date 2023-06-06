@@ -1,31 +1,3 @@
-/* .pageContainer {
-    background-image: url("C:\Users\Fer\Desktop\Programacion\HENRY\PI\FINAL\PI-Pokemon-main\client\src\Images\6776c-clickwallpapers-pokemon-4k-img2-scaled-1.jpg");
-    background-size: contain;
-    background-position: center;
-    height: 100vh;
-    position:relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.input{
-    padding: 10px;
-}
-
-.text{
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    padding-bottom: 10px;
-}
-
-.inputDesign{
-    background-color: transparent;
-    border: 2px solid white;
-    height: 30px;
-    border-radius: 5px;
-    color: white;
-} */
 .formcontainer {
     color: aliceblue;
     margin: 0;
@@ -105,4 +77,9 @@
     margin-bottom: 5px;
     font-weight: bold;
     color: black;
+  }
+
+  .error {
+    color: red;
+    font-weight: bold;
   }

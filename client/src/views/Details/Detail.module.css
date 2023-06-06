@@ -11,4 +11,9 @@
 .text{
     color: white;
     font-size: x-large;
+    text-transform: capitalize;
+}
+
+.imgDetail {
+    width: 300px;
 }

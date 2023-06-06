@@ -8,9 +8,23 @@ import style from "./Form.module.css"
 function validate(form){
     let errors = {};
     if(!form.name){
-        errors.name = "Name is Required";
-    } 
+        errors.name = `This Field Is Required`;
+    } if(!form.hp){
+        errors.hp = "This Field Is Required";
+    }if(!form.attack){
+        errors.attack = "This Field Is Required";
+    }if(!form.defense){
+        errors.defense = "This Field Is Required";
+    }if(!form.speed){
+        errors.speed = "This Field Is Required";
+    }if(!form.weight){
+        errors.weight = "This Field Is Required";
+    }if(!form.height){
+        errors.height = "This Field Is Required";
+    }
+    
     return errors
+    
 }
 
 
@@ -56,6 +70,7 @@ const Form = () => {
     function handleSubmit (e) {
         e.preventDefault();
         console.log(form)
+        if(form.name && form.hp && form.attack && form.defense && form.speed && form.height && form.weight){
         dispatch(postPokemon(form))
         alert("Pokemon Created")
         setForm({
@@ -69,7 +84,9 @@ const Form = () => {
             weight:"",
             types:[]
         })
-        history.push('/home')
+        history.push('/home')} else{
+            alert("Missing Data")
+        }
     }
 
     useEffect(() => {
@@ -81,39 +98,42 @@ const Form = () => {
             <div className={style.createContainer} >
             <form className={style.form} onSubmit={(e)=>handleSubmit(e)}>
                 <div  className={style.formContainer}>
-                    <label className={style.text}>Name: </label>
+                    <label className={style.text}>Name: <span className={style.error}>{errors.name}</span> </label>
                     <input className={style.inputField} type="text" value={form.name} name="name" onChange={(e)=>handleChange(e)} ></input>
-                    {errors.name && (
-                        <p className="error">{errors.name}</p>
-                    )}
                 </div>
                 <div className={style.formContainer}>
                     <label className={style.text}>Image: </label>
-                    <input type="file" value={form.image} name="image" onChange={(e)=>handleChange(e)} ></input>
+                    <input type="text" value={form.image} name="image" onChange={(e)=>handleChange(e)} ></input>
                 </div>
                 <div className={style.formContainer}>
-                    <label className={style.text}>Hp: </label>
-                    <input className={style.inputField} type="text" value={form.hp} name="hp" onChange={(e)=>handleChange(e)} ></input>
+                    <label className={style.text}>Hp: <span className={style.error}>{errors.hp}</span> </label>
+                    <input className={style.inputField} type="number" value={form.hp} name="hp" onChange={(e)=>handleChange(e)} ></input>
+                
                 </div>
                 <div className={style.formContainer}>
-                    <label className={style.text}>Attack: </label>
-                    <input className={style.inputField} type="text" value={form.attack} name="attack" onChange={(e)=>handleChange(e)} ></input>
+                    <label className={style.text}>Attack: <span className={style.error}>{errors.attack}</span> </label>
+                    <input className={style.inputField} type="number" value={form.attack} name="attack" onChange={(e)=>handleChange(e)} ></input>
+                    
                 </div>
                 <div className={style.formContainer}>
-                    <label className={style.text}>Defense: </label>
-                    <input className={style.inputField} type="text" value={form.defense} name="defense" onChange={(e)=>handleChange(e)} ></input>
+                    <label className={style.text}>Defense: <span className={style.error}>{errors.defense}</span> </label>
+                    <input className={style.inputField} type="number" value={form.defense} name="defense" onChange={(e)=>handleChange(e)} ></input>
+                    
                 </div>
                 <div className={style.formContainer}>
-                    <label className={style.text}>Speed: </label>
-                    <input className={style.inputField} type="text" value={form.speed} name="speed" onChange={(e)=>handleChange(e)} ></input>
+                    <label className={style.text}>Speed: <span className={style.error}>{errors.speed}</span> </label>
+                    <input className={style.inputField} type="number" value={form.speed} name="speed" onChange={(e)=>handleChange(e)} ></input>
+                    
                 </div>
                 <div className={style.formContainer}>
-                    <label className={style.text}>Height: </label>
-                    <input className={style.inputField} type="text" value={form.height} name="height" onChange={(e)=>handleChange(e)} ></input>
+                    <label className={style.text}>Height: <span className={style.error}>{errors.height}</span> </label>
+                    <input className={style.inputField} type="number" value={form.height} name="height" onChange={(e)=>handleChange(e)} ></input>
+                    
                 </div>
                 <div className={style.formContainer}>
-                    <label className={style.text}>Weight: </label>
-                    <input className={style.inputField} type="text" value={form.weight} name="weight" onChange={(e)=>handleChange(e)} ></input>
+                    <label className={style.text}>Weight: <span className={style.error}>{errors.weight}</span> </label>
+                    <input className={style.inputField} type="number" value={form.weight} name="weight" onChange={(e)=>handleChange(e)} ></input>
+                    
                 </div>
                 <div>
                     <label>Type: </label>
@@ -122,6 +142,7 @@ const Form = () => {
                             <option value={t}>{t}</option>
                         ))}
                 </select>
+                
                 </div>
                 
                 <ul><li>{form.types.map(el => el + " ,")}</li></ul> 
